@@ -40,13 +40,16 @@ class Application extends Component {
   componentDidMount = async () =>{
     const snapshot = await firestore.collection('posts').get();
 
-    snapshot.forEach(doc=>{
-      const id = doc.id
-      const data = doc.data();
-      console.log({id, data})
-    });
+    const posts = snapshot.docs.map(doc=>{
+      return{
+        id: doc.id,
+        ...doc.data()
+      }
+    })
 
-    //console.log({snapshot})
+    this.setState({
+      posts
+    })
   }
 
   handleCreate = post => {
