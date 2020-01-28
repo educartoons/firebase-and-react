@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import {firestore, auth, createUserProfileDocument} from '../firebase'
 
 import Posts from './Posts';
-import {collectIdsAndDocs} from '../utils/utilities';
 import Authentication from './Authentication';
 
 class Application extends Component {
