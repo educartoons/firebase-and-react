@@ -4,5 +4,10 @@ import { render } from 'react-dom';
 import './index.scss';
 
 import Application from './components/Application';
+import PostsProvider from './components/providers/PostsProvider'
 
-render(<Application />, document.getElementById('root'));
+render(
+  <PostsProvider>
+    <Application />,
+  </PostsProvider> 
+  ,document.getElementById('root'));
