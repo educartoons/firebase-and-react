@@ -32,3 +32,20 @@ service cloud.firestore {
   }
 }
 ```
+
+### Validation data 
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+		
+    match /posts/{postId}{
+    	allow read;
+      allow create, update: if request.auth.uid != null && request.resource.data.title!='';
+      allow delete: if request.auth.uid == resource.data.user.uid 
+    }
+    
+  }
+}
+```
